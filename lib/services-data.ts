@@ -111,7 +111,7 @@ export const SERVICES_DATA: Record<string, any> = {
         category: "consulting",
         title: "Legal Consultation Services",
         subtitle: "Strategic legal foundations are the bedrock of successful development. We provide high-level advisory for land acquisition, joint ventures, and project scoping, ensuring your venture is legally fortified from inception.",
-        heroImage: "https://images.pexels.com/photos/4427430/pexels-photo-4427430.jpeg",
+        heroImage: "/indian-constitution-hero.png",
         knowMore: [
             { id: "01", title: "Strategic Land Audit", description: "Beyond title checks, we provide strategic reviews of land parcels for JDAs, long-term leases, and outright purchases, identifying legal risks before capital is committed." },
             { id: "02", title: "Agreement Architecture", description: "Precision drafting of 'Agreements for Sale' and 'Conveyance Deeds' that are strictly aligned with current RERA mandates and state-specific legal nuances." },
