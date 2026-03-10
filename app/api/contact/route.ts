@@ -11,13 +11,6 @@ export async function POST(request: Request) {
         const adminEmail = process.env.ADMIN_EMAIL_PRIMARY || 'info.admin@rerabypooja.com';
         const adminCc = process.env.ADMIN_EMAIL_CC || 'poojagowda@rerabypooja.com';
 
-        // Debug logging (Remove in production)
-        console.log('API Key present:', !!apiKey);
-        if (apiKey) {
-            console.log('API Key length:', apiKey.length);
-            console.log('API Key prefix:', apiKey.substring(0, 8));
-        }
-
         if (!apiKey) {
             console.error('BREVO_API_KEY is not configured');
             return NextResponse.json({ error: 'Email service configuration missing' }, { status: 500 });
