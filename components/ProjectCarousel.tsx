@@ -181,7 +181,7 @@ export default function ProjectCarousel() {
 
                                 {/* Content */}
                                 <div className="absolute bottom-0 left-0 w-full p-10 z-20">
-                                    <motion.div className="translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+                                    <motion.div className="md:translate-y-6 md:group-hover:translate-y-0 translate-y-0 transition-transform duration-500">
                                         <div className="flex items-center gap-2 mb-4">
                                             <div className="w-6 h-px bg-gold-400" />
                                             <span className="text-gold-400 text-[10px] font-bold uppercase tracking-widest">
@@ -198,7 +198,7 @@ export default function ProjectCarousel() {
                                             {project.location}
                                         </div>
 
-                                        <div className="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                        <div className="grid grid-cols-2 gap-4 mb-8 pt-6 border-t border-white/10 md:opacity-0 md:group-hover:opacity-100 opacity-100 transition-opacity duration-500">
                                             <div>
                                                 <p className="text-[8px] text-gold-400/60 uppercase font-bold mb-1">Applied</p>
                                                 <p className="text-xs text-white/80 font-serif">{project.applied}</p>
@@ -211,7 +211,7 @@ export default function ProjectCarousel() {
 
                                         <button
                                             onClick={() => openModal(project.certificateUrl, project.title)}
-                                            className="w-full flex items-center justify-center py-4 rounded-xl border border-gold-400/40 text-gold-400 text-[10px] font-bold uppercase tracking-[0.2em] gap-3 bg-white/5 hover:bg-gold-400 hover:text-emerald-950 transition-all duration-300 opacity-0 group-hover:opacity-100"
+                                            className="w-full flex items-center justify-center py-4 rounded-xl border border-gold-400/40 text-gold-400 text-[10px] font-bold uppercase tracking-[0.2em] gap-3 bg-white/5 hover:bg-gold-400 hover:text-emerald-950 transition-all duration-300 md:opacity-0 md:group-hover:opacity-100 opacity-100"
                                         >
                                             View RERA Certificate <ArrowRight className="w-3 h-3" />
                                         </button>
