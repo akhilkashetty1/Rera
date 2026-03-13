@@ -1,27 +1,47 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 export default function HeroSection() {
+    const [videoLoaded, setVideoLoaded] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-black text-white">
+        <section className="relative h-screen w-full overflow-hidden bg-emerald-950 text-white">
             {/* Background Video */}
             <div className="absolute inset-0 z-0">
                 <video
+                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="h-full w-full object-cover"
+                    poster="/hero-poster.png"
+                    onLoadedData={() => setVideoLoaded(true)}
+                    className={`h-full w-full object-cover transition-opacity duration-1500 ${videoLoaded ? "opacity-100" : "opacity-0"
+                        }`}
                 >
-                    {/* Using a placeholder high-quality real estate video */}
-                    <source
-                        src="/homePage.mp4"
-                        type="video/mp4"
-                    />
+                    {mounted && (
+                        <source
+                            src="/homePage.mp4"
+                            type="video/mp4"
+                        />
+                    )}
                 </video>
-                <div className="absolute inset-0 bg-black/40" />
+                {/* Fallback dark overlay / backdrop */}
+                {!videoLoaded && (
+                    <div className="absolute inset-0 bg-emerald-950 flex items-center justify-center">
+                        <div className="w-12 h-12 border-4 border-gold-400/20 border-t-gold-400 rounded-full animate-spin" />
+                    </div>
+                )}
+                <div className="absolute inset-0 bg-black/50" />
             </div>
 
             {/* Hero Content */}
