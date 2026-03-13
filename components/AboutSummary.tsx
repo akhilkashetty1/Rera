@@ -24,7 +24,7 @@ export default function AboutSummary() {
                         <div className="w-20 h-1 bg-gold-400 my-6"></div>
                         <p className="text-gray-600 font-sans leading-relaxed text-lg">
                             RERA Consultants by Pooja Gowda M & Associates is dedicated to empowering developers and agents through expert regulatory guidance. With over
-                            5 years of deep-rooted expertise, we specialize in navigating the complex RERA landscape to ensure your projects are registered, compliant, and market-ready.
+                            8 years of deep-rooted expertise, we specialize in navigating the complex RERA landscape to ensure your projects are registered, compliant, and market-ready.
                             Our mission is to provide surgical precision in compliance, protecting your investments and building institutional trust.
                         </p>
                     </motion.div>
@@ -48,7 +48,7 @@ export default function AboutSummary() {
 
                         {/* Floating Badge */}
                         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gold-400 p-4 hidden md:flex flex-col justify-center items-center text-center text-emerald-950 z-10 shadow-xl">
-                            <span className="text-4xl font-serif font-bold display-block">5+</span>
+                            <span className="text-4xl font-serif font-bold display-block">8+</span>
                             <span className="text-xs uppercase tracking-widest font-sans mt-1">Years of Expertise</span>
                         </div>
                     </motion.div>
