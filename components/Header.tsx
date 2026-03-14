@@ -132,7 +132,7 @@ export default function Header() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: "100%" }}
                         transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8 md:hidden overflow-y-auto pt-24 pb-12"
+                        className="fixed inset-0 z-40 bg-black flex flex-col items-start justify-center space-y-8 md:hidden overflow-y-auto pt-24 pb-12"
                     >
                         {NAV_LINKS.map((link) => (
                             <div key={link.name} className="w-full px-12">
@@ -140,9 +140,9 @@ export default function Header() {
                                     <>
                                         <button
                                             onClick={() => setMobileOpenSection(mobileOpenSection === link.name ? null : link.name)}
-                                            className="text-2xl font-serif font-bold text-white hover:text-gold-400 tracking-widest flex items-center justify-between w-full"
+                                            className="text-xl md:text-2xl font-serif font-bold text-white hover:text-gold-400 tracking-widest flex items-center justify-between w-full text-left"
                                         >
-                                            {link.name} <ChevronDown size={20} className={`text-gold-400 transition-transform ${mobileOpenSection === link.name ? 'rotate-180' : ''}`} />
+                                            {link.name} <ChevronDown size={20} className={`text-gold-400 shrink-0 transition-transform ${mobileOpenSection === link.name ? 'rotate-180' : ''}`} />
                                         </button>
                                         <AnimatePresence>
                                             {mobileOpenSection === link.name && (
@@ -150,7 +150,7 @@ export default function Header() {
                                                     initial={{ height: 0, opacity: 0 }}
                                                     animate={{ height: "auto", opacity: 1 }}
                                                     exit={{ height: 0, opacity: 0 }}
-                                                    className="overflow-hidden flex flex-col space-y-4 pt-4 pl-4"
+                                                    className="overflow-hidden flex flex-col space-y-4 pt-4 pl-4 items-start"
                                                 >
                                                     {Object.entries(SERVICES_DATA)
                                                         .filter(([_, service]) => (service as any).category === link.category)
@@ -159,7 +159,7 @@ export default function Header() {
                                                                 key={slug}
                                                                 href={`/${slug}`}
                                                                 onClick={() => setIsMobileMenuOpen(false)}
-                                                                className="text-lg font-sans font-medium text-gray-300 hover:text-gold-400 transition-colors"
+                                                                className="text-lg font-sans font-medium text-gray-300 hover:text-gold-400 transition-colors text-left"
                                                             >
                                                                 {service.title}
                                                             </Link>
@@ -172,9 +172,9 @@ export default function Header() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className="text-2xl font-serif font-bold text-white hover:text-gold-400 tracking-widest flex items-center justify-between w-full"
+                                        className="text-2xl font-serif font-bold text-white hover:text-gold-400 tracking-widest flex items-center justify-between w-full text-left"
                                     >
-                                        {link.name} <ChevronRight size={20} className="text-gold-400" />
+                                        {link.name} <ChevronRight size={20} className="text-gold-400 shrink-0" />
                                     </Link>
                                 )}
                             </div>
