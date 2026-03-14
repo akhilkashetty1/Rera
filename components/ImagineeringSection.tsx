@@ -54,8 +54,8 @@ export default function ImagineeringSection() {
                     </div>
 
                     {/* Staggered Images */}
-                    <div className="lg:w-1/2 relative mt-12 lg:mt-0">
-                        <div className="relative h-[600px] w-full">
+                    <div className="w-full lg:w-1/2 relative mt-12 lg:mt-0">
+                        <div className="relative h-[400px] lg:h-[600px] w-full">
                             {/* Large Vertical Image */}
                             <motion.div
                                 initial={{ opacity: 0, y: 100 }}
