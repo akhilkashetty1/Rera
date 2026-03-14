@@ -73,6 +73,13 @@ export default function HeroSection() {
                     <p className="text-lg md:text-xl font-sans font-light tracking-widest text-gold-100 uppercase">
                         By Pooja Gowda M & Associates
                     </p>
+                    <div className="flex items-center gap-4 mt-8">
+                        <div className="w-12 h-[2px] bg-gold-400" />
+                        <p className="text-[11px] md:text-sm font-sans tracking-[0.4em] text-gold-400 uppercase font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                            Trusted brilliantly - Since 2019
+                        </p>
+                        <div className="w-12 h-[2px] bg-gold-400" />
+                    </div>
                 </motion.div>
             </div>
 

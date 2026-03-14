@@ -43,7 +43,7 @@ export default function ContactForm() {
                                     <ContactItem
                                         icon={<Phone className="text-gold-400" size={20} />}
                                         label="Call Us"
-                                        value="+91 76910 30591"
+                                        value="+91 76910 30591 / 76910 70555"
                                     />
                                     <ContactItem
                                         icon={<Mail className="text-gold-400" size={20} />}
