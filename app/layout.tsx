@@ -16,6 +16,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rerabypooja.com"),
   title: {
     default: "RERA Consultants by Pooja Gowda M | Leading Experts in Bangalore",
     template: "%s | RERA Consultants by Pooja Gowda M"
