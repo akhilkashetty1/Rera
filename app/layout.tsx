@@ -18,6 +18,10 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "RERA Consultants by Pooja Gowda M",
   description: "Premium Real Estate Consulting Services",
+  icons: {
+    icon: "/rera-logo.png",
+    apple: "/rera-logo.png",
+  },
 };
 
 export default function RootLayout({
