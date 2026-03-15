@@ -12,6 +12,7 @@ export async function POST(request: Request) {
         const adminCc = process.env.ADMIN_EMAIL_CC || 'poojagowda@rerabypooja.com';
 
         const googleSheetUrl = process.env.GOOGLE_SHEET_WEBAPP_URL;
+        console.log('Environment GOOGLE_SHEET_WEBAPP_URL loaded:', !!googleSheetUrl);
 
         if (!apiKey) {
             console.error('BREVO_API_KEY is not configured');
@@ -68,12 +69,30 @@ export async function POST(request: Request) {
         });
         operations.push(sendEmail);
 
-        // Operation 2: Google Sheets (Optional but recommended)
+        // Operation 2: Google Sheets
         if (googleSheetUrl) {
+            console.log('Sending data to Google Sheets...');
             const sendToSheet = fetch(googleSheetUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, phone, message, source: source || 'Website Inquiry' })
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    message,
+                    source: source || 'Website Inquiry',
+                    timestamp: new Date().toLocaleString()
+                })
+            }).then(async (res) => {
+                console.log('Google Sheets response status:', res.status);
+                if (!res.ok) {
+                    const errText = await res.text();
+                    console.error('Google Sheets Error Response:', errText);
+                }
+                return res;
+            }).catch(err => {
+                console.error('Google Sheets Fetch Error:', err);
+                return { ok: false, status: 500 } as Response;
             });
             operations.push(sendToSheet);
         }
@@ -83,17 +102,14 @@ export async function POST(request: Request) {
         const emailSuccess = results[0].status === 'fulfilled' && (results[0].value as Response).ok;
         const sheetSuccess = googleSheetUrl && results[1]?.status === 'fulfilled' && (results[1].value as Response).ok;
 
-        if (!emailSuccess) {
-            console.error('Email failed to send');
-            // If email fails, we still might succeed with sheet, but we should alert the client if primary fails
-            if (!sheetSuccess) {
-                return NextResponse.json({ error: 'All notification services failed' }, { status: 500 });
-            }
-        }
+        console.log(`Summary - Email: ${emailSuccess}, Sheet: ${sheetSuccess}`);
 
         return NextResponse.json({
             success: true,
-            details: { email: emailSuccess, sheet: !!sheetSuccess }
+            details: {
+                email: emailSuccess,
+                sheet: !!sheetSuccess
+            }
         });
     } catch (error) {
         console.error('Contact API Error:', error);
