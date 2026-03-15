@@ -11,12 +11,18 @@ export async function POST(request: Request) {
         const adminEmail = process.env.ADMIN_EMAIL_PRIMARY || 'info.admin@rerabypooja.com';
         const adminCc = process.env.ADMIN_EMAIL_CC || 'poojagowda@rerabypooja.com';
 
+        const googleSheetUrl = process.env.GOOGLE_SHEET_WEBAPP_URL;
+
         if (!apiKey) {
             console.error('BREVO_API_KEY is not configured');
             return NextResponse.json({ error: 'Email service configuration missing' }, { status: 500 });
         }
 
-        const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
+        // Prepare operations
+        const operations = [];
+
+        // Operation 1: Brevo Email
+        const sendEmail = fetch('https://api.brevo.com/v3/smtp/email', {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
@@ -60,14 +66,35 @@ export async function POST(request: Request) {
                 `
             })
         });
+        operations.push(sendEmail);
 
-        if (!brevoResponse.ok) {
-            const errorText = await brevoResponse.text();
-            console.error('Brevo API Error:', errorText);
-            return NextResponse.json({ error: 'Failed to send email via Brevo' }, { status: brevoResponse.status });
+        // Operation 2: Google Sheets (Optional but recommended)
+        if (googleSheetUrl) {
+            const sendToSheet = fetch(googleSheetUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, message, source: source || 'Website Inquiry' })
+            });
+            operations.push(sendToSheet);
         }
 
-        return NextResponse.json({ success: true });
+        const results = await Promise.allSettled(operations);
+
+        const emailSuccess = results[0].status === 'fulfilled' && (results[0].value as Response).ok;
+        const sheetSuccess = googleSheetUrl && results[1]?.status === 'fulfilled' && (results[1].value as Response).ok;
+
+        if (!emailSuccess) {
+            console.error('Email failed to send');
+            // If email fails, we still might succeed with sheet, but we should alert the client if primary fails
+            if (!sheetSuccess) {
+                return NextResponse.json({ error: 'All notification services failed' }, { status: 500 });
+            }
+        }
+
+        return NextResponse.json({
+            success: true,
+            details: { email: emailSuccess, sheet: !!sheetSuccess }
+        });
     } catch (error) {
         console.error('Contact API Error:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
