@@ -8,7 +8,7 @@ const LEADER = {
     title: "Chairperson & Managing Director",
     bio: "A visionary leader who has quickly redefined the standard of RERA consulting in Bangalore through a unique 'Imagineering' philosophy. Her focus remains on delivering transparent, efficient, and luxury-grade compliance solutions for modern developers.",
     experience: "8+ Years",
-    image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
+    image: "/pooja-gowda.jpg"
 };
 
 const STATS = [

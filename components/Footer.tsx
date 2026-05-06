@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -21,9 +21,7 @@ export default function Footer() {
                         </p>
                         <div className="flex gap-4">
                             <SocialIcon icon={<Facebook size={18} />} />
-                            <SocialIcon icon={<Instagram size={18} />} />
-                            <SocialIcon icon={<Linkedin size={18} />} />
-                            <SocialIcon icon={<Twitter size={18} />} />
+                            <SocialIcon icon={<Instagram size={18} />} href="https://www.instagram.com/reraconsultants_poojagowda" />
                         </div>
                     </div>
 
@@ -82,9 +80,9 @@ export default function Footer() {
     );
 }
 
-function SocialIcon({ icon }: { icon: React.ReactNode }) {
+function SocialIcon({ icon, href = "#" }: { icon: React.ReactNode; href?: string }) {
     return (
-        <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-gold-400 hover:text-gold-400 hover:bg-emerald-900 transition-all duration-300">
+        <a href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:border-gold-400 hover:text-gold-400 hover:bg-emerald-900 transition-all duration-300">
             {icon}
         </a>
     );

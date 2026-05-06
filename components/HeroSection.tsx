@@ -29,10 +29,16 @@ export default function HeroSection() {
                         }`}
                 >
                     {mounted && (
-                        <source
-                            src="/homePage.mp4"
-                            type="video/mp4"
-                        />
+                        <>
+                            <source
+                                src="/homePage.webm"
+                                type="video/webm"
+                            />
+                            <source
+                                src="/homePage.mp4"
+                                type="video/mp4"
+                            />
+                        </>
                     )}
                 </video>
                 {/* Fallback dark overlay / backdrop */}
