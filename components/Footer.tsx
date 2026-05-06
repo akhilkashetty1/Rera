@@ -20,7 +20,7 @@ export default function Footer() {
                             Redefining luxury real estate with integrity, transparency, and excellence.
                         </p>
                         <div className="flex gap-4">
-                            <SocialIcon icon={<Facebook size={18} />} />
+                            <SocialIcon icon={<Facebook size={18} />} href="https://www.facebook.com/share/18nXvY85ec/?mibextid=wwXIfr" />
                             <SocialIcon icon={<Instagram size={18} />} href="https://www.instagram.com/reraconsultants_poojagowda" />
                         </div>
                     </div>
