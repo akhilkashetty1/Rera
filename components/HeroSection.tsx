@@ -16,16 +16,15 @@ export default function HeroSection() {
     return (
         <section className="relative h-screen w-full overflow-hidden bg-emerald-950 text-white">
             {/* Background Video */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 overflow-hidden bg-emerald-950">
                 <video
                     ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    poster="/hero-poster.png"
                     onLoadedData={() => setVideoLoaded(true)}
-                    className={`h-full w-full object-cover transition-opacity duration-1500 ${videoLoaded ? "opacity-100" : "opacity-0"
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1500 ease-in-out ${videoLoaded ? "opacity-100" : "opacity-0"
                         }`}
                 >
                     {mounted && (
@@ -41,12 +40,15 @@ export default function HeroSection() {
                         </>
                     )}
                 </video>
-                {/* Fallback dark overlay / backdrop */}
+
+                {/* Loading spinner */}
                 {!videoLoaded && (
-                    <div className="absolute inset-0 bg-emerald-950 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-500">
                         <div className="w-12 h-12 border-4 border-gold-400/20 border-t-gold-400 rounded-full animate-spin" />
                     </div>
                 )}
+
+                {/* Constant dark overlay for text readability */}
                 <div className="absolute inset-0 bg-black/50" />
             </div>
 
